@@ -2,33 +2,40 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [input, setInput] = useState(" ");
+  const [input, setInput] = useState("");
+  const [history, setHistory] = useState([]);
 
   const handleClick = (value) => {
     setInput((prev) => prev + value);
   };
 
-  const clearDisplay = () => {
+  const clearAll = () => {
     setInput("");
+    setHistory([]);
   };
 
   const calculate = () => {
-  try {
-    // Remove leading zeros from numbers
-    const sanitizedInput = input.replace(/\b0+(\d+)/g, "$1");
+    try {
+      const sanitizedInput = input.replace(/\b0+(\d+)/g, "$1");
 
-    const result = eval(sanitizedInput);
-
-    setInput(result.toString());
-  } catch {
-    setInput("Error");
-  }
+      for (let i = 0, i< )
+    } catch {
+      setInput("Error");
+    }
   };
 
   return (
     <div className="container">
       <div className="calculator">
         <h1>Calculator</h1>
+
+        <div className="history">
+          {history.map((item, index) => (
+            <div key={index} className="history-item">
+              {item}
+            </div>
+          ))}
+        </div>
 
         <input
           type="text"
@@ -54,7 +61,7 @@ function App() {
           <button onClick={() => handleClick("-")}>-</button>
 
           <button onClick={() => handleClick("0")}>0</button>
-          <button onClick={clearDisplay}>C</button>
+          <button onClick={clearAll}>C</button>
           <button onClick={calculate}>=</button>
           <button onClick={() => handleClick("+")}>+</button>
         </div>
